@@ -1,3 +1,6 @@
+// const appId = '2fb188d6ac205a6a8ce5b285fd61c7a1'
+// const appImageId = 'vjJAL-7GoCmirkeZLZX9NCQ1gHgfJdq3CQTO-2SiDfE'
+
 import {UNSPLASH_API_KEY as appImageId, WEATHER_API_KEY as appId} from './keys.js'
 
 const app = document.getElementById('app')
@@ -59,7 +62,7 @@ const setHtmlBody = (data) => {
         <h3>Search New Location</h3>
         <div class="input">
             <input type="text" id="city-to-search" placeholder="Type a New Location">
-            <button id="search-city-btn" onclick="searchOtherCity()"><img src="./icons/search-white.svg"/></button>
+            <button id="search-city-btn"><img src="./icons/search-white.svg"/></button>
         </div>
         <p id="error-msg"></p>
     </section>
@@ -99,6 +102,7 @@ const searchOtherCity = () => {
                 let imageSrc = imageData.results[imageIndex].urls.regular
                 document.body.style.backgroundImage = `url(${imageSrc})`
                 setHtmlBody(data)
+                document.getElementById('search-city-btn').addEventListener('click', searchOtherCity)
                 loader.classList.add('hidden')
             })
         setHtmlBody(data)
@@ -133,6 +137,7 @@ window.addEventListener('load' , () => {
                         let imageSrc = imageData.results[imageIndex].urls.regular
                         document.body.style.backgroundImage = `url(${imageSrc})`
                         setHtmlBody(data)
+                        document.getElementById('search-city-btn').addEventListener('click', searchOtherCity)
                         loader.classList.add('hidden')
                     })
             }).catch((err) => {
